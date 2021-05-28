@@ -238,13 +238,29 @@ var saveTasks = function(){
 // Iterates through a tasks array and creates task elements on the page from it.
 
 var loadTasks = function(){
-    // Gets task items from localStorage.
-    tasks = localStorage.getItem("tasks");
-    //console.log(tasks);
-    tasks = JSON.parse(tasks);
-    //console.log(tasks)
 
-    for(var i = 0; i<tasks.length; i++){
+    // Gets task items from localStorage.
+    var savedTasks = localStorage.getItem("tasks");
+    //console.log(savedTasks);
+    
+    if(!savedTasks){
+        return false;
+    }
+    console.log(savedTasks);
+    savedTasks = JSON.parse(savedTasks);
+
+    //console.log(savedTasks);
+    //loop through savedTasks array
+    for(var i = 0; i < savedTasks.length; i++){
+        //pass each task object into the createTaskEl() function
+        //debugger;
+        createTaskEl(savedTasks[i]);
+        //console.log(savedTasks[i])
+       
+    }
+    //console.log(tasks)
+}
+    /*for(var i = 0; i<tasks.length; i++){
         //console.log(tasks[i]);
         taskIdCounter = tasks[i].id  
         //console.log(tasks[i])
@@ -292,9 +308,9 @@ var loadTasks = function(){
         taskIdCounter++;
         console.log(listItemEl);
 
-    }
+    }*/
 
-}
+//}
 
 
 formEl.addEventListener("submit", taskFormHandler);
